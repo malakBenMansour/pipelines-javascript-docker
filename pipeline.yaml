@@ -1,0 +1,42 @@
+trigger:
+- main  # Trigger the pipeline on changes to the main branch
+
+pr:
+- none  # Disable PR triggers for this pipeline
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerRegistryServiceConnection: DockerHub
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+- script: |
+    echo "Setting up kubectl"
+    az aks install-cli
+  displayName: 'Install kubectl'
+
+- script: |
+    echo "Logging in to Azure"
+    az login --service-principal -u $(AZURE_SP_CLIENT_ID) -p $(AZURE_SP_CLIENT_SECRET) --tenant $(AZURE_SP_TENANT_ID)
+  displayName: 'Azure Login'
+
+- script: |
+    echo "Setting kubeconfig"
+    az aks get-credentials --resource-group $(AKS_RESOURCE_GROUP) --name $(AKS_CLUSTER_NAME)
+  displayName: 'Set AKS kubeconfig'
+
+- script: |
+    docker build -t your-docker-image-name:$(Build.BuildId) .
+    docker login -u $(DOCKER_REGISTRY_USERNAME) -p $(DOCKER_REGISTRY_PASSWORD) your-docker-registry-url
+    docker push your-docker-image-name:$(Build.BuildId)
+  displayName: 'Build and Push Docker Image'
+
+- script: |
+    kubectl apply -f path/to/your/k8s/deploy.yaml
+  displayName: 'Deploy to AKS'
