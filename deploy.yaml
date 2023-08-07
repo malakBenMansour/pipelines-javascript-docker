@@ -16,4 +16,4 @@ spec:
       - name: myapp
         image: {{ containerRegistryConnection.Authorization.Parameters.loginServer }}/{{#toAlphaNumericString imageRepository 50}}{{/toAlphaNumericString}}
         ports:
-          - containerPort: {{ servicePort }}
+          - containerPort: 8080
