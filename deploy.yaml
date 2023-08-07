@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: myapp-deployment
 spec:
   replicas: 2
   selector:
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: {{ containerRegistryConnection.Authorization.Parameters.loginServer }}/{{#toAlphaNumericString imageRepository 50}}{{/toAlphaNumericString}}
+        image: malakbenmansour/pipelines-javascript-docker:$(Build.BuildId)  
         ports:
-          - containerPort: 8080
+          - containerPort: 8080  # Port your application listens on
