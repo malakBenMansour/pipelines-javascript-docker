@@ -9,7 +9,7 @@ pool:
 
 variables:
   dockerRegistryServiceConnection: DockerHub
-  connect
+  
 
 steps:
 - task: UsePythonVersion@0
