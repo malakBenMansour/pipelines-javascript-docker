@@ -21,7 +21,7 @@ steps:
 
 - script: |
     echo "Logging in to Azure"
-    az login  -u 747897d8-c656-4ce3-9679-68f1549aa986 -p "ztJ8Q~MsIOKvZ9RB1Pz1qPc-oIx0H1g69muzEcB5" -t 7917799a-9669-4e41-b87d-4c14fefd7c41
+    az login --service-principal -u "747897d8-c656-4ce3-9679-68f1549aa986" -p "ztJ8Q~MsIOKvZ9RB1Pz1qPc-oIx0H1g69muzEcB5" --tenant "7917799a-9669-4e41-b87d-4c14fefd7c41"
   displayName: 'Azure Login'
 
 - script: |
