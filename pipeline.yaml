@@ -16,10 +16,7 @@ steps:
     versionSpec: '3.x'
     addToPath: true
 
-- script: |
-    echo "Setting up kubectl"
-    az aks install-cli
-  displayName: 'Install kubectl'
+
 
 - script: |
     echo "Logging in to Azure"
