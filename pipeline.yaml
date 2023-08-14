@@ -30,9 +30,9 @@ steps:
   displayName: 'Set AKS kubeconfig'
 
 - script: |
-    docker build -t your-docker-image-name:$(Build.BuildId) .
+    docker build -t malakbenmansour/pipelines-javascript-docker:$(Build.BuildId) .
     docker login -u malakbenmansour -p malak2001 https://hub.docker.com/u/malakbenmansour
-    docker push your-docker-image-name:$(Build.BuildId)
+    docker push malakbenmansour/pipelines-javascript-docker:$(Build.BuildId)
   displayName: 'Build and Push Docker Image'
 
 - script: |
