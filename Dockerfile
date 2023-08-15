@@ -5,7 +5,7 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY ["/app/package.json", "/app/package-lock.json*", "./"]
 
 RUN npm install --production
 
