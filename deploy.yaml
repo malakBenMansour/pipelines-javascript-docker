@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: malakbenmansour/pipelines-javascript-docker:$(Build.BuildId)  
+        image: malakbenmansour/imageaks  
         ports:
           - containerPort: 8080  # Port your application listens on
