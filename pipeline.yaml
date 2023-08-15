@@ -30,9 +30,9 @@ steps:
   displayName: 'Set AKS kubeconfig'
 
 - script: |
-    docker build  .
+    docker build -t malak:imageaks .
     docker login -u malakbenmansour -p malak2001 
-    docker push 
+    docker push malak:imageaks
   displayName: 'Build and Push Docker Image'
 
 - script: |
