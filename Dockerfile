@@ -5,11 +5,11 @@ ENV NODE_ENV=production
 
 WORKDIR /app
 
-COPY ["/app/package.json", "/app/package-lock.json*", "./"]
+COPY ["/app/package.json", "/app/package-lock.json*","/app/server.js", "./"]
 
 RUN npm install --production
 
 COPY . .
 
 EXPOSE 8080
-CMD [ "node", "/app/server.js" ]
+CMD [ "node", "server.js" ]
